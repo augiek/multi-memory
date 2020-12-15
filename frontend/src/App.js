@@ -1,9 +1,13 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import AppNav from './components/AppNav/AppNav.js';
 import HomePage from './pages/HomePage.js';
 import LoginPage from './pages/LoginPage.js';
 import SignupPage from './pages/SignupPage.js';
+import NewEntryPage from './pages/NewEntryPage.js';
+import AccountPage from './pages/AccountPage.js';
+import ArchivePage from './pages/ArchivePage.js';
 import UserAPI from './api/UserAPI';
 
 
@@ -60,10 +64,13 @@ function App() {
 
   return (
     <div className="App">
+      <AppNav />
         <BrowserRouter>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/login" render={renderLogInPage} />
             <Route exact path="/signup" component={SignupPage} />
+            <Route exact path="/new" component={NewEntryPage} />
+            <Route exact path="/account" component={AccountPage} />
             <Route exact path="/archive" component={ArchivePage} />
         </BrowserRouter>
       </div>

@@ -21,6 +21,7 @@ class Entry(models.Model):
     medium = models.CharField(max_length=7)
     location_tags = models.CharField(max_length=255, blank=True, null=True)
     text_tags = models.TextField(blank=True, null=True)
+    file_upload = models.CharField(max_length=255, blank=True, null=True)
     # created_date = models.DateTimeField(auto_now_add=True)
     # edited_date = models.DateTimeField(auto_now=True)
     published_date = models.CharField(max_length=255, blank=True, null=True)
