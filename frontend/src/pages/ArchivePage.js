@@ -1,12 +1,12 @@
 import React from 'react'
 
-const SignupPage = () => {
+const ArchivePage = () => {
   console.log("testing sign-up page")
   return (
     <div>
-      <h1> Signup Page </h1>
+      <h1> Archive Page </h1>
     </div>
   )
 }
 
-export default SignupPage
+export default ArchivePage
