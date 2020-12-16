@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import UserSerializer, UserSerializerWithToken
 from django.http import JsonResponse
+import json 
 
 # user-related views:
 @api_view(['GET'])
@@ -43,6 +44,7 @@ def entry_detail(request, entry_id):
 def new_entry(request):
     if request.method == "POST":
         data = json.load(request)
+        import pdb; pdb.set_trace()
         form = EntryForm(data)
         if form.is_valid():
             entry = form.save(commit=True)

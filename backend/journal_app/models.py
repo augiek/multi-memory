@@ -16,6 +16,7 @@ class Entry(models.Model):
     entry_title = models.CharField(max_length=255, blank=True, null=True)
     written_body = models.TextField(blank=True, null=True)
     voice_body = models.FileField(blank=True, null=True)
+    # voice_body = models.FileField(upload_to='archive/', blank=True, null=True)
     voice_text = models.TextField(blank=True, null=True)
     # process vtt in background after letting them submit form
     location_tags = models.CharField(max_length=255, blank=True, null=True)
@@ -30,6 +31,9 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.entry_title
+
+class Audio(models.Model):
+    audio_file = models.FileField(upload_to='archive/', blank=True, null=True)
 
 # class Location(models.Model):
 #     street_address = models.CharField(max_length=255, blank=True, null=True)
