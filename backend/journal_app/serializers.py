@@ -4,13 +4,10 @@ from django.contrib.auth.models import User
 from builtins import object
 
 
-
 class UserSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = User
         fields = ('id', 'username',)
-
 
 class UserSerializerWithToken(serializers.ModelSerializer):
 
