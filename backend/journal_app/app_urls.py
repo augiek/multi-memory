@@ -13,4 +13,3 @@ urlpatterns = [
     path('<int:entry_id>/delete/', views.delete_entry, name='delete_entry'),
 ]
 
-# JWT tokens (using authorization with React frontend), see videos from last week

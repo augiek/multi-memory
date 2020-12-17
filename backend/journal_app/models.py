@@ -32,8 +32,8 @@ class Entry(models.Model):
     def __str__(self):
         return self.entry_title
 
-class Audio(models.Model):
-    audio_file = models.FileField(upload_to='archive/', blank=True, null=True)
+# class Audio(models.Model):
+#     audio_file = models.FileField(upload_to='archive/', blank=True, null=True)
 
 # class Location(models.Model):
 #     street_address = models.CharField(max_length=255, blank=True, null=True)
