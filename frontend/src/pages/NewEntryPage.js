@@ -8,7 +8,13 @@ import MicRecorder from 'mic-recorder-to-mp3'
 function NewEntryPage() {
   const [ redirect, setRedirect ] = React.useState(false);
   const [voiceBody, setVoiceBody] = useState(null);
-  const [writtenBody, setWrittenBody] = useState("");
+  const [writtenBody, setWrittenBody] = useState(null);
+  const [locationTags, setLocationTags] = useState(null);
+  const [textTags, setTextTags] = useState(null);
+  // const [fileUpload, setFileUpload] = useState(null);
+  const [privacy, setPrivacy] = useState(null);
+  const [entryTitle, setEntryTitle] = useState("");
+
 
   const recorder = new MicRecorder ({
     bitRate: 128
@@ -21,7 +27,7 @@ function NewEntryPage() {
     }).catch((e) => {
       console.error(e);
     });
-    }
+  }
 
   const stopRecord = async (event) => {
     event.preventDefault();
@@ -31,7 +37,7 @@ function NewEntryPage() {
       // Example: Create a mp3 file and play
       // console.log(buffer)
       // console.log(blob)
-      blob.arrayBuffer().then(buffer => {setVoiceBody(buffer)});
+      blob.arrayBuffer().then(buffer => {setVoiceBody(btoa(buffer))});
 
       
     }).catch((e) => {
@@ -52,12 +58,12 @@ function NewEntryPage() {
 
     const entryObject = {
       voice_body: voiceBody,
-      written_body: writtenBody
-      // location_tags: "",
-      // text_tags: "",
-      // file_upload: "",
-      // privacy: "",
-      // entry_title: ""
+      written_body: writtenBody,
+      location_tags: locationTags,
+      text_tags: textTags,
+      // file_upload: btoa(fileUpload),
+      privacy: privacy,
+      entry_title: entryTitle 
     }
     console.log(entryObject)
     try {
@@ -68,7 +74,7 @@ function NewEntryPage() {
       } else {
         // const jsonData = await response.json();
         // alert(jsonData.error.message);
-        console.log("else statement triggered, line 71")
+        console.log("else statement triggered, line 77")
       }
     } catch (err) {
       console.error('error occurred while adding entry (consoled on NewEntryPage1):', err);
@@ -84,8 +90,8 @@ function NewEntryPage() {
         <Label for="record_stop"> Stop recording </Label>
         <Button size="sm" color="danger" type="button" name="record_stop" id="record_stop" onClick={stopRecord}>STOP</Button>
         <br/>
-        <Label for="record_stop"> Play recording </Label>
-        <Button size="sm" color="primary" type="button" name="record_play" id="record_play" onClick={playRecord}>PLAY</Button>
+        {/* <Label for="record_stop"> Play recording </Label>
+        <Button size="sm" color="primary" type="button" name="record_play" id="record_play" onClick={playRecord}>PLAY</Button> */}
       <Form onSubmit={handleFormSubmit}>
         {/* <FormGroup>
           <Label for="audio_file">Audio File (to be hidden?)</Label>
@@ -95,37 +101,36 @@ function NewEntryPage() {
           <Label for="writtenBody">Write your entry</Label>
           <Input value={writtenBody} type="textarea" name="writtenBody" id="writtenBody" onChange={e => setWrittenBody(e.target.value)}/>
         </FormGroup>
+        <FormGroup>
+          <Label for="locationTags">Relevant Locations</Label>
+          <Input type="textarea" name="locationTags" id="locationTags" onChange={e => setLocationTags(e.target.value)} />
+        </FormGroup>
+        <FormGroup>
+          <Label for="textTags">Relevant Tags</Label>
+          <Input type="text" name="textTags" id="textTags" onChange={e => setTextTags(e.target.value)}/>
+        </FormGroup>
         {/* <FormGroup>
-          <Label for="location_tags">Relevant Locations</Label>
-          <Input type="textarea" name="location_tags" id="location_tags" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="text_tags">Relevant Tags</Label>
-          <Input type="text" name="text_tags" id="text_tags" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="file_upload">Relevant Files</Label>
-          <Input type="file" name="file_upload" id="file_upload" />
-        </FormGroup>
+          <Label for="fileUpload">Relevant Files</Label>
+          <Input type="file" name="fileUpload" id="fileUpload" onChange={e => setFileUpload(e.target.value)}/>
+        </FormGroup> */}
         <FormGroup>
           <Label for="privacy">Privacy</Label>
-          <Input type="select" name="privacy" id="privacy" multiple>
+          <Input type="select" name="privacy" id="privacy" multiple onChange={e => setPrivacy(e.target.value)}>
             <option>Only me</option>
             <option>Kids only</option>
             <option>Kids' branches</option>
             <option>Spouse only</option>
             <option>Suzanne's branch</option> */}
             {/* maybe there's a better way to do this? need to have a family tree page somewhere else where they can add people and make branches/groups. customized privacy is a lower priority in the grand scheme */}
-          {/* </Input> */}
-        {/* </FormGroup> */}
-        {/* <FormGroup>
-          <Label for="entry_title">Entry Title</Label>
-          <Input type="text" name="entry_title" id="entry_title" />
-        </FormGroup> */}
+          </Input>
+        </FormGroup>
+        <FormGroup>
+          <Label for="entryTitle" >Entry Title</Label>
+          <Input type="text" name="entryTitle" id="entryTitle" onChange={e => setEntryTitle(e.target.value)}/>
+        </FormGroup>
         <Button>Submit</Button>
       </Form>
     </div>
-  )
-};
+  )};
 
 export default NewEntryPage

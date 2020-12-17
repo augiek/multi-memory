@@ -52,7 +52,7 @@ class EntrySerializer(object):
                 'voice_text': entry.voice_text,
                 'location_tags': entry.location_tags,
                 'text_tags': entry.text_tags,
-                'file_upload': entry.file_upload.read(),
+                # 'file_upload': entry.file_upload.read(),
                 # created_date: 
                 # edited_date: 
                 'privacy': entry.privacy,
@@ -71,7 +71,7 @@ class EntrySerializer(object):
             'voice_text': self.body.voice_text,
             'location_tags': self.body.location_tags,
             'text_tags': self.body.text_tags,
-            'file_upload': self.body.file_upload,
+            # 'file_upload': self.body.file_upload,
             # created_date: 
             # edited_date: 
             'privacy': self.body.privacy,

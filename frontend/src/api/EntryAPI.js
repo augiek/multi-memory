@@ -23,7 +23,8 @@ const addEntry = (entryObject) => {
   console.log(entryObject)
   return fetch(`${BASE_URL}journal/new/`, {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      // 'Content-Type': 'multipart/form-data'
     },
     method: "POST",
     body: JSON.stringify(entryObject)

@@ -21,7 +21,7 @@ class Entry(models.Model):
     # process vtt in background after letting them submit form
     location_tags = models.CharField(max_length=255, blank=True, null=True)
     text_tags = models.TextField(blank=True, null=True)
-    file_upload = models.FileField(blank=True, null=True)
+    file_upload = models.TextField(blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     privacy = models.CharField(max_length=255, blank=True, null=True)
@@ -31,6 +31,11 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.entry_title
+
+class Quote(models.Model):
+    user_input: models.CharField(max_length=255)
+    quote_text: models.CharField(max_length=255)
+    quote_author: models.CharField(max_length=255)
 
 # class Audio(models.Model):
 #     audio_file = models.FileField(upload_to='archive/', blank=True, null=True)
@@ -47,3 +52,4 @@ class Entry(models.Model):
 
 #     def __str__(self):
 #         return self.location_title
+
