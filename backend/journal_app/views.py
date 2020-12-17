@@ -8,8 +8,9 @@ from rest_framework import permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import UserSerializer, UserSerializerWithToken
+from .serializers import UserSerializer, UserSerializerWithToken, EntrySerializer
 from django.http import JsonResponse
+import json 
 
 # user-related views:
 @api_view(['GET'])
@@ -30,6 +31,7 @@ class UserList(APIView):
 # entry-related views:
 def entry_list(request):
     entries = Entry.objects.all()
+    print(entries)
     serialized_entries = EntrySerializer(entries).all_entries
     return JsonResponse(data=serialized_entries, status=200)
 
@@ -43,6 +45,8 @@ def entry_detail(request, entry_id):
 def new_entry(request):
     if request.method == "POST":
         data = json.load(request)
+        print(data)
+        # import pdb; pdb.set_trace()
         form = EntryForm(data)
         if form.is_valid():
             entry = form.save(commit=True)

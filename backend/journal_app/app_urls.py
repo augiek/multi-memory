@@ -6,11 +6,10 @@ urlpatterns = [
     path('current_user/', current_user, name='current_user'),
     path('users/', UserList.as_view()),
     # path('', views.home, name='home'),
-    path('new', views.new_entry, name='new_entry'),
-    path('archive', views.entry_list, name='entry_list'),
-    path('<int:entry_id>', views.entry_detail, name='entry_detail'),
-    path('<int:entry_id>/edit', views.edit_entry, name='edit_entry'),
-    path('<int:entry_id>/delete', views.delete_entry, name='delete_entry'),
+    path('new/', views.new_entry, name='new_entry'),
+    path('archive/', views.entry_list, name='entry_list'),
+    path('<int:entry_id>/', views.entry_detail, name='entry_detail'),
+    path('<int:entry_id>/edit/', views.edit_entry, name='edit_entry'),
+    path('<int:entry_id>/delete/', views.delete_entry, name='delete_entry'),
 ]
 
-# JWT tokens (using authorization with React frontend), see videos from last week

@@ -4,13 +4,10 @@ from django.contrib.auth.models import User
 from builtins import object
 
 
-
 class UserSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = User
         fields = ('id', 'username',)
-
 
 class UserSerializerWithToken(serializers.ModelSerializer):
 
@@ -48,18 +45,17 @@ class EntrySerializer(object):
 
         for entry in self.body:
             entry_details = {
-                'entry_title': self.body.entry_title,
-                'written_body': self.body.written_body,
+                'entry_title': entry.entry_title,
+                'written_body': entry.written_body,
                 # voice_body: 
-                'voice_body_temp': self.body.voice_body_temp,
-                'voice_text': self.body.voice_text,
-                'medium': self.body.medium,
-                'location_tags': self.body.location_tags,
-                'text_tags': self.body.text_tags,
+                'voice_body': entry.voice_body,
+                'voice_text': entry.voice_text,
+                'location_tags': entry.location_tags,
+                'text_tags': entry.text_tags,
+                # 'file_upload': entry.file_upload.read(),
                 # created_date: 
                 # edited_date: 
-                'published_date': self.body.published_date,
-                'privacy': self.body.privacy,
+                'privacy': entry.privacy,
             }
             output['entries'].append(entry_details)
 
@@ -68,8 +64,15 @@ class EntrySerializer(object):
     @property
     def entry_detail(self):
         return {
-            'entry_name': self.body.entry_name,
-            'price': self.body.price,
-            'varietal': self.body.varietal,
-            'description': self.body.description
+            'entry_title': self.body.entry_title,
+            'written_body': self.body.written_body,
+            # voice_body: 
+            'voice_body': self.body.voice_body,
+            'voice_text': self.body.voice_text,
+            'location_tags': self.body.location_tags,
+            'text_tags': self.body.text_tags,
+            # 'file_upload': self.body.file_upload,
+            # created_date: 
+            # edited_date: 
+            'privacy': self.body.privacy,
         }

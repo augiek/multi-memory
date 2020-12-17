@@ -9,10 +9,11 @@ const LoginPage = (props) => {
     return (
       <div>
         <button onClick={props.handleLogout}>Logout</button>
-        <Redirect to='/'></Redirect>
+        {/* <Redirect to='/'></Redirect> */}
       </div>
     )
   }
+
   return (
     <div>
       <h1> Login Page </h1>
