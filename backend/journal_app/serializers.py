@@ -45,6 +45,7 @@ class EntrySerializer(object):
 
         for entry in self.body:
             entry_details = {
+                'id': entry.id,
                 'entry_title': entry.entry_title,
                 'written_body': entry.written_body,
                 # 'voice_body': entry.voice_body,
@@ -52,7 +53,7 @@ class EntrySerializer(object):
                 'location_tags': entry.location_tags,
                 'text_tags': entry.text_tags,
                 # 'file_upload': entry.file_upload.read(),
-                # created_date: 
+                'created_date': entry.created_date,
                 # edited_date: 
                 'privacy': entry.privacy,
             }

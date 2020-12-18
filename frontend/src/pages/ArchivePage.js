@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {fetchEntries} from '../api/EntryAPI'
+import { Link } from 'react-router-dom';
 
 
 const ArchivePage = (props) => {
@@ -15,10 +16,14 @@ const ArchivePage = (props) => {
 
   return (
     <div>
-      <h1> Archive Page </h1>
+      <h1> Archived Entries </h1>
       {entries.map((entry, index) => (
-        <p>{entry.entry_title}</p>
-    ))}
+        // <p>{entry.entry_title}, {entry.created_date} ADD CREATED_DATE HERE</p>
+        <div>
+          <Link to={`/archive/entry/${entry.id}`} >{entry.id}. {entry.entry_title}, {entry.created_date}</Link>
+          <br />
+        </div>
+      ))}
     </div>
   )
 } 
