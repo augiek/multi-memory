@@ -1,17 +1,17 @@
 const BASE_URL = 'http://localhost:8000/';
 
-// const fetchEntryByID = async (entryID) => {
-//   const response = await fetch(`${BASE_URL}/${entryID}`);
-//   const data = await response.json();
-//   return data;
-// };
+const fetchEntryByID = async (entryID) => {
+  const response = await fetch(`${BASE_URL}journal/${entryID}/`);
+  const data = await response.json();
+  return data;
+};
 
-// const fetchEntries = async (filters = null) => {
-//   const url = filters ? `${BASE_URL}?filter={"where":${filters}}` : BASE_URL;
-//   const response = await fetch(url);
-//   const data = await response.json();
-//   return data;
-// };
+const fetchEntries = async () => {
+  const url = `${BASE_URL}journal/archive/`;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+};
 
 // const searchEntries = async (textToSearchFor) => {
 //   const response = await fetch(`${BASE_URL}?filter={"where":{"title":{"ilike":"${textToSearchFor}"}}}`)
@@ -32,8 +32,8 @@ const addEntry = (entryObject) => {
 };
 
 export {
-  // fetchEntryByID,
-  // fetchEntries,
+  fetchEntryByID,
+  fetchEntries,
   // searchEntries,
   addEntry,
 };
