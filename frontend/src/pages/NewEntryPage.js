@@ -37,7 +37,13 @@ function NewEntryPage() {
       // Example: Create a mp3 file and play
       // console.log(buffer)
       // console.log(blob)
-      blob.arrayBuffer().then(buffer => {setVoiceBody(btoa(buffer))});
+      blob.arrayBuffer().then(buffer => {
+        let base64String = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+        setVoiceBody(base64String)
+      });
+
+      let base64String = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+
 
       
     }).catch((e) => {

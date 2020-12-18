@@ -11,6 +11,11 @@ from rest_framework.views import APIView
 from .serializers import UserSerializer, UserSerializerWithToken, EntrySerializer
 from django.http import JsonResponse
 import json 
+import base64
+from django.db.models import FileField
+import io
+from django.core.files import File
+
 
 # user-related views:
 @api_view(['GET'])
@@ -39,19 +44,31 @@ def entry_list(request):
 def entry_detail(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     serialized_entry = EntrySerializer(entry).entry_detail
+
+    media_path = 'http://localhost:8000' + entry.voice_body.url # need to test this with an entry that does not have a voice recording
+    serialized_entry.update({'voice_url': media_path})
+
     return JsonResponse(data=serialized_entry, status=200)
 
 @csrf_exempt
 def new_entry(request):
     if request.method == "POST":
-        data = json.load(request)
-        print(data)
         # import pdb; pdb.set_trace()
-        form = EntryForm(data)
+        data = json.load(request)
+
+        if 'voice_body' in data:
+            decoded_audio = base64.b64decode(data['voice_body']) # this line worked in the Python shell 
+            form = EntryForm(data)
+            file = File(io.BytesIO(decoded_audio))
+            form.instance.voice_body.save('voice_entry.mp3', file)
+        
         if form.is_valid():
             entry = form.save(commit=True)
             serialized_entry = EntrySerializer(entry).entry_detail
             return JsonResponse(data=serialized_entry, status=200)
+
+
+    # base64.b64decode(data['voice_body'])
 
 @csrf_exempt
 def edit_entry(request, entry_id):

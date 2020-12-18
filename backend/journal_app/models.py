@@ -15,8 +15,8 @@ class Entry(models.Model):
     # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='entries') #use built-in user model
     entry_title = models.CharField(max_length=255, blank=True, null=True)
     written_body = models.TextField(blank=True, null=True)
-    voice_body = models.FileField(blank=True, null=True)
-    # voice_body = models.FileField(upload_to='archive/', blank=True, null=True)
+    # voice_body = models.FileField(blank=True, null=True)
+    voice_body = models.FileField(upload_to='./audio_files/', blank=True, null=True)
     voice_text = models.TextField(blank=True, null=True)
     # process vtt in background after letting them submit form
     location_tags = models.CharField(max_length=255, blank=True, null=True)
@@ -30,12 +30,7 @@ class Entry(models.Model):
         ordering = ['-created_date']
 
     def __str__(self):
-        return self.entry_title
-
-class Quote(models.Model):
-    user_input: models.CharField(max_length=255)
-    quote_text: models.CharField(max_length=255)
-    quote_author: models.CharField(max_length=255)
+        return f"{self.entry_title}"
 
 # class Audio(models.Model):
 #     audio_file = models.FileField(upload_to='archive/', blank=True, null=True)

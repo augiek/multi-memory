@@ -47,8 +47,7 @@ class EntrySerializer(object):
             entry_details = {
                 'entry_title': entry.entry_title,
                 'written_body': entry.written_body,
-                # voice_body: 
-                'voice_body': entry.voice_body,
+                # 'voice_body': entry.voice_body,
                 'voice_text': entry.voice_text,
                 'location_tags': entry.location_tags,
                 'text_tags': entry.text_tags,
@@ -66,8 +65,7 @@ class EntrySerializer(object):
         return {
             'entry_title': self.body.entry_title,
             'written_body': self.body.written_body,
-            # voice_body: 
-            'voice_body': self.body.voice_body,
+            # 'voice_body': self.body.voice_body,
             'voice_text': self.body.voice_text,
             'location_tags': self.body.location_tags,
             'text_tags': self.body.text_tags,
