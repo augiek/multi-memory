@@ -16,11 +16,12 @@ const EntryDetailPage = (props) => {
 
   return (
     <div>
-      <h1> Entry Detail Page </h1>
-      <p>{entry.entry_title}</p>
-      <p>{entry.voice_url}</p>
+      <h1> Entry Detail </h1>
+      <h2>{entry.entry_title}</h2>
+      <p>Date Created: {entry.created_date} NEED TO FIX THIS</p>
+      <p>Voice recording: {entry.voice_url}</p>
       <figure>
-            <figcaption>Listen to the Voice Entry:</figcaption>
+            <figcaption>Listen to Entry:</figcaption>
             <audio
                 controls
                 src={entry.voice_url}>
@@ -28,6 +29,11 @@ const EntryDetailPage = (props) => {
                     <code>audio</code> element.
             </audio>
         </figure>
+      <p>Written content: {entry.written_body}</p>
+      {/* <p>{entry.voice_text}</p> */}
+      <p>Relevant locations: {entry.location_tags} ADD MAP TO THIS</p>
+      <p>Tags: {entry.text_tags}</p>
+      <p>Share setting: {entry.privacy}</p>
     </div>
   )
 } 

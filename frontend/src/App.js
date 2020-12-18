@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage.js';
 import LoginPage from './pages/LoginPage.js';
 import SignupPage from './pages/SignupPage.js';
 import NewEntryPage from './pages/NewEntryPage.js';
-import AccountPage from './pages/AccountPage.js';
+import FamilyTreePage from './pages/FamilyTreePage.js';
 import ArchivePage from './pages/ArchivePage.js';
 import EntryDetailPage from './pages/EntryDetailPage.js'
 import UserAPI from './api/UserAPI';
@@ -71,7 +71,7 @@ function App() {
             <Route exact path="/login" render={renderLogInPage} />
             <Route exact path="/signup" component={SignupPage} />
             <Route exact path="/new" component={NewEntryPage} />
-            <Route exact path="/account" component={AccountPage} />
+            <Route exact path="/tree" component={FamilyTreePage} />
             <Route exact path="/archive" component={ArchivePage} />
             <Route exact path="/archive/entry/:id(\d+)" component={EntryDetailPage} />
         </BrowserRouter>

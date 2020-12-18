@@ -23,7 +23,6 @@ function NewEntryPage() {
   const startRecord = async (event) => {
     event.preventDefault();
     recorder.start().then(() => {
-      // something else
     }).catch((e) => {
       console.error(e);
     });
@@ -33,10 +32,6 @@ function NewEntryPage() {
     event.preventDefault();
     recorder.stop()
     .getMp3().then(([buffer, blob]) => {
-      // do what ever you want with buffer and blob
-      // Example: Create a mp3 file and play
-      // console.log(buffer)
-      // console.log(blob)
       blob.arrayBuffer().then(buffer => {
         let base64String = btoa(String.fromCharCode(...new Uint8Array(buffer)));
         setVoiceBody(base64String)
@@ -50,13 +45,6 @@ function NewEntryPage() {
       alert('We could not retrieve your message');
       console.log(e);
     });
-  }
-  
-  const playRecord = async (event) => {
-    event.preventDefault();
-
-      const player = new Audio(URL.createObjectURL(stopRecord.audio_file));
-        player.play();
   }
 
   const handleFormSubmit = async (event) => {
@@ -90,21 +78,13 @@ function NewEntryPage() {
   return redirect ? <Redirect to='/' /> : (
     <div style={{ padding: '20px' }}>
       <h3> Add an Entry </h3>
-      <p>Trying to decide what story to tell? Don't think too hard. People just want to hear about you--what you've been up to, what you've been thinking about--it doesn't have to be groundbreaking! </p>
-      <p> Still not sure? Click \here\ for some ideas! INSERT PROMPT GENERATOR HERE.</p>
         <Label for="record_start"> Start recording</Label>
         <Button size="sm" color="success" type="button" name="record_start" id="record_start" onClick={startRecord}>RECORD</Button>
         <br/>
         <Label for="record_stop"> Stop recording </Label>
         <Button size="sm" color="danger" type="button" name="record_stop" id="record_stop" onClick={stopRecord}>STOP</Button>
         <br/>
-        {/* <Label for="record_stop"> Play recording </Label>
-        <Button size="sm" color="primary" type="button" name="record_play" id="record_play" onClick={playRecord}>PLAY</Button> */}
       <Form onSubmit={handleFormSubmit}>
-        {/* <FormGroup>
-          <Label for="audio_file">Audio File (to be hidden?)</Label>
-          <Input type="file" name="voice_body" id="audio_file" />
-        </FormGroup> */}
         <FormGroup>
           <Label for="writtenBody">Write your entry</Label>
           <Input value={writtenBody} type="textarea" name="writtenBody" id="writtenBody" onChange={e => setWrittenBody(e.target.value)}/>

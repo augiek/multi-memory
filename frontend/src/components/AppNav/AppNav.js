@@ -28,13 +28,13 @@ const AppNav = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/">Home</NavLink>
+              <NavLink href="/new">New Entry</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="new/">New Entry</NavLink>
+              <NavLink href="/archive">Archive</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="archive/">Archive</NavLink>
+              <NavLink href="/tree">Family Tree</NavLink>
             </NavItem>
             {/* <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
@@ -56,12 +56,12 @@ const AppNav = (props) => {
           </Nav>
           <div>
             {props.isLoggedIn
-              ? <Button onClick={props.handleLogout}>Log out</Button>
-              : <Button href='/login'>Log in</Button>
+              ? <Button size="sm" onClick={props.handleLogout} >Log out</Button>
+              : <Button size="sm" href='/login'>Log in</Button>
             }
             {props.isLoggedIn
-              ? <Button href="/account">Account</Button>
-              : <Button href="/signup">Sign up</Button>
+              ? <Button size="sm" href="/account">Account</Button>
+              : <Button size="sm" href="/signup">Sign up</Button>
             }
           </div> 
               {/* <Button size="sm" color="dark" href="/account">Login/Logout</Button>
