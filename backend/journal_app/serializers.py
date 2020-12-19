@@ -64,6 +64,7 @@ class EntrySerializer(object):
     @property
     def entry_detail(self):
         return {
+            'id': self.body.id,
             'entry_title': self.body.entry_title,
             'written_body': self.body.written_body,
             # 'voice_body': self.body.voice_body,

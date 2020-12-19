@@ -31,9 +31,27 @@ const addEntry = (entryObject) => {
   });
 };
 
+
+// /archive/entry/:id(\d+)/edit
+
+const editEntry = (entryObject) => {
+  console.log(entryObject)
+  // entry_id = entryObject.id
+  // const entry_id = String(entryObject.id);
+  return fetch(`${BASE_URL}journal/${entryObject.id}/edit/`, {
+    headers: {
+      'Content-Type': 'application/json',
+      // 'Content-Type': 'multipart/form-data'
+    },
+    method: "PUT",
+    body: JSON.stringify(entryObject)
+  });
+};
+
 export {
   fetchEntryByID,
   fetchEntries,
   // searchEntries,
   addEntry,
+  editEntry,
 };

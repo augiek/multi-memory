@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {fetchEntryByID} from '../api/EntryAPI'
+import { Button } from 'reactstrap'
 
 
 const EntryDetailPage = (props) => {
@@ -16,12 +17,13 @@ const EntryDetailPage = (props) => {
 
   return (
     <div>
+    <div>
       <h1> Entry Detail </h1>
       <h2>{entry.entry_title}</h2>
-      <p>Date Created: {entry.created_date} NEED TO FIX THIS</p>
-      <p>Voice recording: {entry.voice_url}</p>
+      <p>Date Created: ??? NEED TO FIX {entry.created_date}</p>
+      {/* <p>Voice recording: {entry.voice_url}</p> */}
       <figure>
-            <figcaption>Listen to Entry:</figcaption>
+            <figcaption>Listen to Entry: (need to make conditional)</figcaption>
             <audio
                 controls
                 src={entry.voice_url}>
@@ -35,6 +37,11 @@ const EntryDetailPage = (props) => {
       <p>Tags: {entry.text_tags}</p>
       <p>Share setting: {entry.privacy}</p>
     </div>
+    <div>
+      <Button size="sm" href={`/archive/entry/${entry.id}/edit`}>Edit entry</Button>
+      <Button size="sm" color="danger">Delete entry</Button>
+    </div>
+  </div>
   )
 } 
 

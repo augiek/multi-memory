@@ -9,6 +9,7 @@ import NewEntryPage from './pages/NewEntryPage.js';
 import FamilyTreePage from './pages/FamilyTreePage.js';
 import ArchivePage from './pages/ArchivePage.js';
 import EntryDetailPage from './pages/EntryDetailPage.js'
+import EditEntryPage from './pages/EditEntryPage.js'
 import UserAPI from './api/UserAPI';
 
 
@@ -74,11 +75,11 @@ function App() {
             <Route exact path="/tree" component={FamilyTreePage} />
             <Route exact path="/archive" component={ArchivePage} />
             <Route exact path="/archive/entry/:id(\d+)" component={EntryDetailPage} />
+            <Route exact path="/archive/entry/:id(\d+)/edit" component={EditEntryPage} />
+
         </BrowserRouter>
       </div>
   );
 }
 
 export default App;
-
-// (\\d+)

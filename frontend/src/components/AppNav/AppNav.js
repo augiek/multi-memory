@@ -64,8 +64,6 @@ const AppNav = (props) => {
               : <Button size="sm" href="/signup">Sign up</Button>
             }
           </div> 
-              {/* <Button size="sm" color="dark" href="/account">Login/Logout</Button>
-              <Button size="sm" color="light" href="/account">Signup/Account</Button> */}
         </Collapse>
       </Navbar>
     </div>
