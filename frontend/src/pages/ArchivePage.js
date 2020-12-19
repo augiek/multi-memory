@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 const ArchivePage = (props) => {
   const [entries, setEntries] = useState([])
 
-  useEffect(() => {
+ useEffect(() => {
     // This useEffect using [] will only run 1 time after initial render/return
     const response = fetchEntries()
     response.then(data => {
       // console.log(data)
       setEntries(data.entries)})
-  }, [])
+  }, []) 
 
   return (
     <div>

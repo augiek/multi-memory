@@ -47,7 +47,7 @@ def entry_detail(request, entry_id):
 
     media_path = 'http://localhost:8000' + entry.voice_body.url # need to test this with an entry that does not have a voice recording
     serialized_entry.update({'voice_url': media_path})
-
+    print(serialized_entry)
     return JsonResponse(data=serialized_entry, status=200)
 
 @csrf_exempt
@@ -55,10 +55,10 @@ def new_entry(request):
     if request.method == "POST":
         # import pdb; pdb.set_trace()
         data = json.load(request)
+        form = EntryForm(data)
 
-        if 'voice_body' in data:
+        if data['voice_body']:
             decoded_audio = base64.b64decode(data['voice_body']) # this line worked in the Python shell 
-            form = EntryForm(data)
             file = File(io.BytesIO(decoded_audio))
             form.instance.voice_body.save('voice_entry.mp3', file)
         
@@ -73,7 +73,7 @@ def new_entry(request):
 @csrf_exempt
 def edit_entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
-    if request.method == "POST":
+    if request.method == "PUT":
         data = json.load(request)
         form = EntryForm(data, instance=entry)
         if form.is_valid():

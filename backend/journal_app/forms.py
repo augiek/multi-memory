@@ -9,7 +9,7 @@ from .models import Entry
 class EntryForm(forms.ModelForm):
     class Meta:
         model = Entry
-        fields = ('entry_title', 'written_body', 'voice_body', 'voice_text', 'text_tags', 'location_tags', 'file_upload', 'privacy')
+        fields = ('id', 'entry_title', 'written_body', 'voice_body', 'voice_text', 'text_tags', 'location_tags', 'file_upload', 'privacy')
 
         # 'created_date', 'updated_date', 
 
