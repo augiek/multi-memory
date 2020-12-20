@@ -1,11 +1,15 @@
 .App {
   text-align: left;
-  padding: 20px;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.Page-body {
+  text-align: left;
+  padding: 20px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

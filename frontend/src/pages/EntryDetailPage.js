@@ -16,30 +16,30 @@ const EntryDetailPage = (props) => {
   }, [])
 
   return (
-    <div>
-    <div>
-      <h1> Entry Detail </h1>
-      <h2>{entry.entry_title}</h2>
-      <p>Date Created: ??? NEED TO FIX {entry.created_date}</p>
-      {/* <p>Voice recording: {entry.voice_url}</p> */}
-      <figure>
-            <figcaption>Listen to Entry: (need to make conditional)</figcaption>
-            <audio
-                controls
-                src={entry.voice_url}>
-                    Your browser does not support the
-                    <code>audio</code> element.
-            </audio>
-        </figure>
-      <p>Written content: {entry.written_body}</p>
-      {/* <p>{entry.voice_text}</p> */}
-      <p>Relevant locations: {entry.location_tags} ADD MAP TO THIS</p>
-      <p>Tags: {entry.text_tags}</p>
-      <p>Share setting: {entry.privacy}</p>
-    </div>
+    <div class="Page-body">
+      <div>
+        <h1> Entry Detail </h1>
+        <h2>{entry.entry_title}</h2>
+        <p>Date Created: ??? NEED TO FIX {entry.created_date}</p>
+        {/* <p>Voice recording: {entry.voice_url}</p> */}
+        <figure>
+              <figcaption>Listen to Entry: (need to make conditional)</figcaption>
+              <audio
+                  controls
+                  src={entry.voice_url}>
+                      Your browser does not support the
+                      <code>audio</code> element.
+              </audio>
+          </figure>
+        <p>Written content: {entry.written_body}</p>
+        {/* <p>{entry.voice_text}</p> */}
+        <p>Relevant locations: {entry.location_tags} ADD MAP TO THIS</p>
+        <p>Tags: {entry.text_tags}</p>
+        <p>Share setting: {entry.privacy}</p>
+      </div>
     <div>
       <Button size="sm" href={`/archive/entry/${entry.id}/edit`}>Edit entry</Button>
-      <Button size="sm" color="danger">Delete entry</Button>
+      <Button size="sm" href={`/archive/entry/${entry.id}/delete`} color="danger">Delete entry</Button>
     </div>
   </div>
   )

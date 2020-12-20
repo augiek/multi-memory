@@ -13,11 +13,11 @@ const fetchEntries = async () => {
   return data;
 };
 
-// const searchEntries = async (textToSearchFor) => {
-//   const response = await fetch(`${BASE_URL}?filter={"where":{"title":{"ilike":"${textToSearchFor}"}}}`)
-//   const data = await response.json();
-//   return data;
-// };
+const searchEntries = async (textToSearchFor) => {
+  const response = await fetch(`${BASE_URL}?filter={"where":{"entry_title" OR 'written_body" OR 'location_tags' OR 'text_tags':{"ilike":"${textToSearchFor}"}}}`)
+  const data = await response.json();
+  return data;
+};
 
 const addEntry = (entryObject) => {
   console.log(entryObject)
@@ -30,9 +30,6 @@ const addEntry = (entryObject) => {
     body: JSON.stringify(entryObject)
   });
 };
-
-
-// /archive/entry/:id(\d+)/edit
 
 const editEntry = (entryObject) => {
   console.log(entryObject)
@@ -48,10 +45,25 @@ const editEntry = (entryObject) => {
   });
 };
 
+const deleteEntry = (entryObject) => {
+  // console.log(entryObject)
+  // entry_id = entryObject.id
+  // const entry_id = String(entryObject.id);
+  return fetch(`${BASE_URL}journal/${entryObject.id}/delete/`, {
+    headers: {
+      'Content-Type': 'application/json',
+      // 'Content-Type': 'multipart/form-data'
+    },
+    method: "DELETE",
+    body: JSON.stringify(entryObject)
+  });
+};
+
 export {
   fetchEntryByID,
   fetchEntries,
-  // searchEntries,
+  searchEntries,
   addEntry,
   editEntry,
+  deleteEntry,
 };
