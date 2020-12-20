@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import AppNav from './components/AppNav/AppNav.js';
 import HomePage from './pages/HomePage.js';
 import LoginPage from './pages/LoginPage.js';

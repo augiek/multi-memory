@@ -1,11 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
+
 
 
 
 const HomePage = (props) => {
     return (
-    <div>
+    <div class="Page-body">
       <div>
         <h1> Home Page </h1>
         <h5>Hi /user.first_name/, you've made /entry.id.max/ journal entries so far. Let's add to your legacy.</h5>
@@ -16,7 +18,7 @@ const HomePage = (props) => {
         <p>What were some of your favorite things to do with your parents when you were a kid? </p>
       </div>
       <div>
-        <Link to={`/new`}>Tell your story, in your own voice.</Link>
+        <Button href={`/new`}>Tell your story, in your own voice.</Button>
       </div>
     </div>
     )

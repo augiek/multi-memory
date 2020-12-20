@@ -51,8 +51,6 @@ const EditEntryPage = (props) => {
 
   //     let base64String = btoa(String.fromCharCode(...new Uint8Array(buffer)));
 
-
-      
   //   }).catch((e) => {
   //     alert('We could not retrieve your message');
   //     console.log(e);
@@ -75,8 +73,8 @@ const EditEntryPage = (props) => {
     try {
       const response = await editEntry(entryObject);
       if (response.status === 200) {
-        // redirect the user back to Home Page upon successful POST
-        // setRedirect(true);
+        // redirect the user back to Home Page upon successful POST (but how do you change it to redirect to Entry Detail page?)
+        setRedirect(true);
       } else {
         // const jsonData = await response.json();
         // alert(jsonData.error.message);
@@ -87,7 +85,8 @@ const EditEntryPage = (props) => {
     }
   };
 
-  return redirect ? <Redirect to='/' /> : (
+  // return redirect ? <Redirect to={`/archive/entry/${entry.id}`} /> : (
+  return redirect ? <Redirect to={`/`} /> : (
     <div style={{ padding: '20px' }}>
       <h3> Edit Your Entry </h3>
         {/* <Label for="record_start"> Start recording</Label>
@@ -119,7 +118,7 @@ const EditEntryPage = (props) => {
         </FormGroup> */}
         <FormGroup>
           <Label for="privacy">Update your share setting</Label>
-          <Input value={entry.privacy} type="select" name="privacy" id="privacy" multiple onChange={e => setEntry({...entry, privacy: e.target.value})}>
+          <Input type="select" name="privacy" id="privacy" onChange={e => setEntry({...entry, privacy: e.target.value})} multiple>
             <option>Only me</option>
             <option>Kids only</option>
             <option>Kids' branches</option>

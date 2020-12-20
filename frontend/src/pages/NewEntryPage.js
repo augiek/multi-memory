@@ -87,7 +87,9 @@ function NewEntryPage() {
     }
   };
 
-  return redirect ? <Redirect to='/' /> : (
+  // return redirect ? <Redirect to={`/archive/entry/${entry.id}`} /> : (
+  return redirect ? <Redirect to={`/`} /> : (
+
     <div style={{ padding: '20px' }}>
       <h3> Add an Entry </h3>
       <p>Trying to decide what story to tell? Don't think too hard. People just want to hear about you--what you've been up to, what you've been thinking about--it doesn't have to be groundbreaking! </p>
@@ -122,7 +124,7 @@ function NewEntryPage() {
           <Input type="file" name="fileUpload" id="fileUpload" onChange={e => setFileUpload(e.target.value)}/>
         </FormGroup> */}
         <FormGroup>
-          <Label for="privacy">Privacy</Label>
+          <Label for="privacy">Share setting</Label>
           <Input type="select" name="privacy" id="privacy" multiple onChange={e => setPrivacy(e.target.value)}>
             <option>Only me</option>
             <option>Kids only</option>
