@@ -32,9 +32,6 @@ class Entry(models.Model):
     def __str__(self):
         return f"{self.entry_title}"
 
-# class Audio(models.Model):
-#     audio_file = models.FileField(upload_to='archive/', blank=True, null=True)
-
 # class Location(models.Model):
 #     street_address = models.CharField(max_length=255, blank=True, null=True)
 #     city = models.CharField(max_length=255, blank=True, null=True)
@@ -47,4 +44,15 @@ class Entry(models.Model):
 
 #     def __str__(self):
 #         return self.location_title
+
+# class Group(models.Model):
+#     group_name = models.CharField(max_length=255)
+
+# class GroupMember(models.Model):
+#     first_name = models.CharField(max_length=255, blank=True, null=True)
+#     last_name = models.CharField(max_length=255, blank=True, null=True)
+#     maiden_name = models.CharField(max_length=255, blank=True, null=True)
+#     relationship_to_you = models.CharField(max_length=255, blank=True, null=True)
+#     entry = models.ManyToManyField(Entry)
+#     group = models.ManyToManyField(Group)
 

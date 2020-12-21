@@ -8,12 +8,6 @@ import MicRecorder from 'mic-recorder-to-mp3'
 const EditEntryPage = (props) => {
   const [ redirect, setRedirect ] = React.useState(false);
   // const [voiceBody, setVoiceBody] = useState(null);
-  // const [writtenBody, setWrittenBody] = useState(null);
-  // const [locationTags, setLocationTags] = useState(null);
-  // const [textTags, setTextTags] = useState(null);
-  // // const [fileUpload, setFileUpload] = useState(null);
-  // const [privacy, setPrivacy] = useState(null);
-  // const [entryTitle, setEntryTitle] = useState("");
   const [entry, setEntry] = useState({});
 
   const recorder = new MicRecorder ({
@@ -85,8 +79,8 @@ const EditEntryPage = (props) => {
     }
   };
 
-  // return redirect ? <Redirect to={`/archive/entry/${entry.id}`} /> : (
-  return redirect ? <Redirect to={`/`} /> : (
+  return redirect ? <Redirect to={`/archive/entry/${entry.id}`} /> : (
+  // return redirect ? <Redirect to={`/`} /> : (
     <div style={{ padding: '20px' }}>
       <h3> Edit Your Entry </h3>
         {/* <Label for="record_start"> Start recording</Label>
@@ -127,7 +121,7 @@ const EditEntryPage = (props) => {
             {/* maybe there's a better way to do this? need to have a family tree page somewhere else where they can add people and make branches/groups. customized privacy is a lower priority in the grand scheme */}
           </Input>
         </FormGroup>
-        <Button>Submit</Button>
+        <Button>Save Edits</Button>
       </Form>
     </div>
   )};
