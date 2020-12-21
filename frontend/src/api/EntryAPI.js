@@ -46,13 +46,9 @@ const editEntry = (entryObject) => {
 };
 
 const deleteEntry = (entryObject) => {
-  // console.log(entryObject)
-  // entry_id = entryObject.id
-  // const entry_id = String(entryObject.id);
   return fetch(`${BASE_URL}journal/${entryObject.id}/delete/`, {
     headers: {
       'Content-Type': 'application/json',
-      // 'Content-Type': 'multipart/form-data'
     },
     method: "DELETE",
     body: JSON.stringify(entryObject)

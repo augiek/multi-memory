@@ -34,7 +34,7 @@ const AppNav = (props) => {
               <NavLink href="/archive">Archive</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/tree">Family Tree</NavLink>
+              <NavLink href="/groups">Family Tree</NavLink>
             </NavItem>
             {/* <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
@@ -77,33 +77,6 @@ const AppNav = (props) => {
 //       <Redirect to='/'></Redirect>
 //     </div>
 //   )
-// }
-
-// import React, { Component } from 'react';
-// // import { Link } from 'react-router-dom';
-// import { Navbar, NavItem, NavLink } from 'reactstrap';
-// // import navItems from '../../config/Sections.json';
-
-// class AppNav extends Component {
-//   render() {
-//     return (
-//       <Navbar color="light">
-//         {/* {navItems.map((navItem) =>
-//           <NavItem>
-//             <NavLink to={`/archive/${navItem.value}`} >
-//               { navItem.label }
-//             </Link>
-//           </NavItem>
-//         )} */}
-//         <NavItem>
-//           <NavLink href="/">Home</NavLink>
-//         </NavItem>
-//         <NavItem>
-//           <NavLink href="/">Archive</NavLink>
-//         </NavItem>
-//       </Navbar>
-//     )
-//   }
 // }
 
 export default AppNav;

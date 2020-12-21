@@ -10,8 +10,18 @@ import FamilyTreePage from './pages/FamilyTreePage.js';
 import ArchivePage from './pages/ArchivePage.js';
 import EntryDetailPage from './pages/EntryDetailPage.js'
 import EditEntryPage from './pages/EditEntryPage.js'
+import MemberDetailPage from './pages/FamilyTreePage.js';
+import NewGroupPage from './pages/NewGroupPage.js';
+import GroupDetailPage from './pages/GroupDetailPage.js'
+import EditGroupPage from './pages/EditGroupPage.js'
+import EditMemberPage from './pages/EditMemberPage.js'
+import NewMemberPage from './pages/NewMemberPage.js'
 import UserAPI from './api/UserAPI';
 
+{/* <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin="">
+</script> */}
 
 function App() {
   const [user, setUser] = useState(null)
@@ -72,11 +82,17 @@ function App() {
             <Route exact path="/login" render={renderLogInPage} />
             <Route exact path="/signup" component={SignupPage} />
             <Route exact path="/new" component={NewEntryPage} />
-            <Route exact path="/tree" component={FamilyTreePage} />
+            <Route exact path="/groups" component={FamilyTreePage} />
             <Route exact path="/archive" component={ArchivePage} />
             <Route exact path="/archive/entry/:id(\d+)" component={EntryDetailPage} />
             <Route exact path="/archive/entry/:id(\d+)/edit" component={EditEntryPage} />
 
+            {/* <Route exact path="/groups/new" component={NewGroupPage} />
+            <Route exact path="/groups/:id(\d+)/edit" component={EditGroupPage} />
+            <Route exact path="/groups/:id(\d+)" component={GroupDetailPage} />
+            <Route exact path="/groups/:id(\d+)/:id(\d+)" component={MemberDetailPage} />
+            <Route exact path="/groups/:id(\d+)/:id(\d+)/edit" component={EditMemberPage} />
+            <Route exact path="/groups/:id(\d+)/new" component={NewMemberPage} /> */}
         </BrowserRouter>
       </div>
   );

@@ -76,3 +76,59 @@ class EntrySerializer(object):
             # edited_date: 
             'privacy': self.body.privacy,
         }
+
+class GroupSerializer(object):
+    def __init__(self, body):
+        self.body = body
+
+    @property
+    def all_groups(self):
+        output = {'groups': []}
+
+        for group in self.body:
+            group_details = {
+                'id': group.id,
+                'group_name': group.group_name,
+            }
+            output['groups'].append(group_details)
+
+        return output
+
+    @property
+    def group_detail(self):
+        return {
+            'id': self.body.id,
+            'group_name': self.body.group_name,
+        }
+
+class MemberSerializer(object):
+    def __init__(self, body):
+        self.body = body
+
+    @property
+    def all_members(self):
+        output = {'members': []}
+
+        for member in self.body:
+            member_details = {
+                'id': member.id,
+                'first_name': member.first_name,
+                'last_name': member.last_name,
+                'maiden_name': member.maiden_name,
+                'relationship_to_you': member.relationship_to_you,
+                'group': member.group,
+            }
+            output['members'].append(member_details)
+
+        return output
+
+    @property
+    def member_detail(self):
+        return {
+            'id': self.body.id,
+            'first_name': self.body.first_name,
+            'last_name': self.body.last_name,
+            'maiden_name': self.body.maiden_name,
+            'relationship_to_you': self.body.relationship_to_you,
+            'group': self.body.group,
+        }

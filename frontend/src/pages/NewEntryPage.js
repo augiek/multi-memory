@@ -87,7 +87,7 @@ function NewEntryPage() {
     }
   };
 
-  // return redirect ? <Redirect to={`/archive/entry/${entry.id}`} /> : (
+  // return redirect ? <Redirect to={`/archive/entry/${this.id}`} /> : (
   return redirect ? <Redirect to={`/`} /> : (
 
     <div style={{ padding: '20px' }}>

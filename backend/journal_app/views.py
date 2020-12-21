@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from .models import Entry
+# from .models import Entry, Group, GroupMember
 from django.views.decorators.csrf import csrf_exempt
 from .forms import EntryForm
+# from .forms import EntryForm, GroupForm, MemberForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from rest_framework import permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import UserSerializer, UserSerializerWithToken, EntrySerializer
+from .serializers import UserSerializer, UserSerializerWithToken, EntrySerializer, GroupSerializer, MemberSerializer
 from django.http import JsonResponse
 import json 
 import base64
@@ -45,7 +47,7 @@ def entry_detail(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     serialized_entry = EntrySerializer(entry).entry_detail
 
-    media_path = 'http://localhost:8000' + entry.voice_body.url # need to test this with an entry that does not have a voice recording
+    media_path = 'http://localhost:8000' + entry.voice_body.url 
     serialized_entry.update({'voice_url': media_path})
     print(serialized_entry)
     return JsonResponse(data=serialized_entry, status=200)
@@ -53,12 +55,11 @@ def entry_detail(request, entry_id):
 @csrf_exempt
 def new_entry(request):
     if request.method == "POST":
-        # import pdb; pdb.set_trace()
         data = json.load(request)
         form = EntryForm(data)
 
         if data['voice_body']:
-            decoded_audio = base64.b64decode(data['voice_body']) # this line worked in the Python shell 
+            decoded_audio = base64.b64decode(data['voice_body'])
             file = File(io.BytesIO(decoded_audio))
             form.instance.voice_body.save('voice_entry.mp3', file)
         
@@ -66,9 +67,6 @@ def new_entry(request):
             entry = form.save(commit=True)
             serialized_entry = EntrySerializer(entry).entry_detail
             return JsonResponse(data=serialized_entry, status=200)
-
-
-    # base64.b64decode(data['voice_body'])
 
 @csrf_exempt
 def edit_entry(request, entry_id):
@@ -83,17 +81,104 @@ def edit_entry(request, entry_id):
 
 @csrf_exempt
 def delete_entry(request, entry_id):
-    if request.method == "POST":
+    if request.method == "DELETE":
         entry = Entry.objects.get(id=entry_id)
         entry.delete()
     return JsonResponse(data={'status': 'Successfully deleted entry.'}, status=200)
 
+# group-related views:
+def get_group(group_id):
+    return Group.objects.get(id=group_id)
 
-# urlpatterns = [
-#     path('', views.home, name='home'),
-#     path('new', views.new_entry, name='new_entry'),
-#     path('archive', views.entries_list, name='entries_list'),
-#     path('<int:entry_id>', views.entry_detail, name='entry_detail'),
-#     path('<int:entry_id>/edit', views.edit_entry, name='edit_entry'),
-#     path('<int:entry_id>/delete', views.delete_entry, name='delete_entry'),
-# ]
+def group_list(request):
+    groups = Group.objects.all()
+    print(groups)
+    serialized_entries = GroupSerializer(entries).all_entries
+    return JsonResponse(data=serialized_entries, status=200)
+
+
+def group_detail(request, group_id):
+    group = Group.objects.get(id=group_id)
+    serialized_group = GroupSerializer(group).group_detail
+
+    media_path = 'http://localhost:8000' + Group.voice_body.url # need to test this with an group that does not have a voice recording
+    serialized_group.update({'voice_url': media_path})
+    print(serialized_group)
+    return JsonResponse(data=serialized_group, status=200)
+
+@csrf_exempt
+def new_group(request):
+    if request.method == "POST":
+        data = json.load(request)
+        form = GroupForm(data)
+        if form.is_valid():
+            group = form.save(commit=True)
+            serialized_group = GroupSerializer(group).group_detail
+            return JsonResponse(data=serialized_group, status=200)
+
+@csrf_exempt
+def edit_group(request, group_id):
+    group = get_group(group_id)
+    if request.method == "PUT":
+        data = json.load(request)
+        form = GroupForm(data, instance=group)
+        if form.is_valid():
+            group = form.save(commit=True)
+            serialized_group = GroupSerializer(group).group_detail
+            return JsonResponse(data=serialized_group, status=200)
+
+@csrf_exempt
+def delete_group(request, group_id):
+    if request.method == "POST":
+        group = get_group(group_id)
+        group.delete()
+    return JsonResponse(data={'status': 'Successfully deleted group.'}, status=200)
+
+# member-related views: 
+def get_member(member_id):
+    return GroupMember.objects.get(id=member_id)
+
+def member_list(request):
+    members = GroupMember.objects.all()
+    print(members)
+    serialized_members = MemberSerializer(members).all_members
+    return JsonResponse(data=serialized_members, status=200)
+
+
+def member_detail(request, group_id, member_id):
+    member = GroupMember.objects.get(id=member_id)
+    serialized_member = MemberSerializer(member).member_detail
+    print(serialized_member)
+    return JsonResponse(data=serialized_member, status=200)
+
+@csrf_exempt
+def new_member(request, group_id):
+    group = get_group(group_id)
+    if request.method == "POST": 
+        data = json.load(request)
+        form = MemberForm(data)
+        if form.is_valid():
+            member = form.save(commit=True)
+            member.group = group
+            serialized_member = MemberSerializer(member).member_detail
+            return JsonResponse(data=serialized_member, status=200)
+
+@csrf_exempt
+def edit_member(request, group_id, member_id):
+    group = get_group(group_id)
+    member = get_member(member_id)
+    if request.method == "PUT":
+        data = json.load(request)
+        form = MemberForm(data, instance=member)
+        if form.is_valid():
+            member = form.save(commit=True)
+            member.group = group
+            serialized_member = MemberSerializer(member).member_detail
+            return JsonResponse(data=serialized_member, status=200)
+
+@csrf_exempt
+def delete_member(request, group_id, member_id):
+    if request.method == "POST":
+        member = get_member(member_id)
+        member.delete()
+    return JsonResponse(data={'status': 'Successfully deleted group.'}, status=200)
