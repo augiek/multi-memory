@@ -67,7 +67,6 @@ const EditEntryPage = (props) => {
     try {
       const response = await editEntry(entryObject);
       if (response.status === 200) {
-        // redirect the user back to Home Page upon successful POST (but how do you change it to redirect to Entry Detail page?)
         setRedirect(true);
       } else {
         // const jsonData = await response.json();

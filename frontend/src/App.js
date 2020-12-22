@@ -48,10 +48,13 @@ function App() {
       username: event.target.username.value,
       password: event.target.password.value
     }
+    let username = event.target.username.value;
     let response = await UserAPI.login(userCredentials)
     let data = await response.json()
     if (data.token) {
       localStorage.setItem('auth-user', data.token)
+      localStorage.setItem('username', username)
+      console.log(data)
       setIsLoggedIn(true)
       setUser(data.user)
     }
@@ -76,8 +79,8 @@ function App() {
 
   return (
     <div className="App">
-      <AppNav />
         <BrowserRouter>
+      <AppNav handleLogout={handleLogout}/>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/login" render={renderLogInPage} />
             <Route exact path="/signup" component={SignupPage} />

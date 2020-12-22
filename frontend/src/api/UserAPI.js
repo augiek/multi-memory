@@ -33,3 +33,7 @@ const signupUser = async (userCredentials) => {
 }
 
 export default {login, getLoggedInUser, signupUser}
+
+
+
+// TOKEN: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1pa2VzIiwiZXhwIjoxNjA4NTk3ODkyLCJlbWFpbCI6IiJ9.dGcxHu1WHLZPT1aTTR2Jo3Y2AxI3CvCsGU2OJCJDa9E
