@@ -23,18 +23,23 @@ const HomePage = (props) => {
       <div>
         <h1> multiMemories </h1>
         <h5>Hi {username}, welcome back to multiMemories. Let's make your life unforgettable.</h5>
-        <p>What did you do this week? </p>
-        <p>What are you looking forward to over the next month? </p>
-        <p>What's happening in current events? Local? National? Global? How do you feel about it?</p>
-        <p>Is anything new with anyone from your Family Tree? </p>
-        <p>Have you seen any good movies or read any good books recently?</p>
-        <p>What were some of your favorite things to do with your parents when you were a kid? </p>
+        <div class="Page-substance">
+          <p>What did you do this week? </p>
+          <p>What are you looking forward to over the next month? </p>
+          <p>What's happening in current events? Local? National? Global? How do you feel about it?</p>
+          <p>Is anything new with anyone from your Family Tree? </p>
+          <p>Have you seen any good movies or read any good books recently?</p>
+          <p>What were some of your favorite things to do with your parents when you were a kid? </p>
+        </div>
       </div>
-      <div>
-        <Button href={`/new`} >Tell your story, in your own voice.</Button>
+      <div class="home-container">
+        <div class="center-button">
+          <Button class="New-button-home" color="info" href={`/new`} >Tell your story, in your own voice.</Button>
+        </div>
       </div>
     </div>
     )
   }
+
 
 export default HomePage

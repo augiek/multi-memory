@@ -12,6 +12,56 @@
   padding: 20px;
 }
 
+.Page-substance {
+  text-align: left;
+  /* padding: 20px; */
+  margin-left: 20px;
+  color: gray
+}
+
+.nav-button-container {
+  /* height: 40px; */
+  position: relative;
+  /* border: 3px solid green; */
+}
+
+.float-button {
+  float:left;
+  margin-right:5px;
+}
+
+.divider{
+  width:5px;
+  height:auto;
+  display:inline-block;
+}
+
+.nav-link {
+  color: white;
+}
+
+.home-container {
+  height: 40px;
+  position: relative;
+  /* border: 3px solid green; */
+}
+
+.New-button-home {
+  text-align: center;
+  padding: 20px;
+  margin-left: 20px;
+  color: #5bc0de;
+}
+
+.center-button {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -59,7 +109,18 @@
 
 .prompt-field {
   /* border: 3px solid #0275d8; */
-  border: 3px solid #white;
+  /* border: 3px solid #white; */
   padding: 10px;
   color: #0275d8;
+}
+
+.center-login {
+  margin: 0;
+  position: absolute;
+  justify-content: center;
+  justify-items: center;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

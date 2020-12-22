@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, Redirect} from 'react-router-dom'
-import { Button } from 'reactstrap';
+import { Button, Form, Label, Input, Col } from 'reactstrap';
 
 
 
@@ -17,21 +17,28 @@ const LoginPage = (props) => {
   }
 
   return (
-    <div>
-      <h1> Login Page </h1>
-      <form onSubmit={props.handleLogin}>
-        <label>Username:</label>
-        <input type='text' placeholder='Username' name='username' />
-        <label>Password:</label>
-        <input type='password' name='password' />
-        <button type='submit'>Login</button>
-      </form>
-      <div>
+    <div class="center-login">
+      <h1> Log in to start recording </h1>
+      <Form onSubmit={props.handleLogin}>
+        <div>
+          <Label>Username:</Label>
+          <Input type='text' placeholder='Username' name='username' />
+        </div>
+        <div>
+          <Label>Password:</Label>
+          <Input type='password' name='password' />
+        </div>
+        <br/>
+        <Col sm={{ size: 10, offset: 5 }}>
+          <Button justify-content="center" type='submit'>Login</Button>
+        </Col>
+      </Form>
+      {/* <div>
         <Link to='/'>Home</Link>
-      </div>
-      <div>
+      </div> */}
+      {/* <Col sm={{ size: 10, offset: 5 }}>
         <Link to='/signup'>Signup</Link>
-      </div>
+      </Col> */}
     </div>
   )
 }
