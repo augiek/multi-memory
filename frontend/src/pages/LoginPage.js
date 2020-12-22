@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link, Redirect} from 'react-router-dom'
+import { Button } from 'reactstrap';
+
 
 
 const LoginPage = (props) => {
@@ -7,8 +9,8 @@ const LoginPage = (props) => {
 
   if (props.isLoggedIn) {
     return (
-      <div>
-        <button onClick={props.handleLogout}>Logout</button>
+      <div class='Page-body'>
+        <Button onClick={props.handleLogout}>Logout</Button>
         {/* <Redirect to='/'></Redirect> */}
       </div>
     )

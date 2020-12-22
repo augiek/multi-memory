@@ -2,7 +2,7 @@ import React, { Component, useState } from 'react';
 import { addEntry } from '../api/EntryAPI';
 import { Redirect } from 'react-router-dom';
 import { Button, Form, FormGroup, Input, Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
-// import { ReactMic } from 'react-mic';
+import getPrompt from '../api/PromptAPI'
 import MicRecorder from 'mic-recorder-to-mp3'
 
 function NewEntryPage() {
@@ -14,6 +14,7 @@ function NewEntryPage() {
   // const [fileUpload, setFileUpload] = useState(null);
   const [privacy, setPrivacy] = useState(null);
   const [entryTitle, setEntryTitle] = useState("");
+  const [prompt, setPrompt] = useState("");
 
 
   const recorder = new MicRecorder ({
@@ -59,6 +60,11 @@ function NewEntryPage() {
         player.play();
   }
 
+  // const generatePrompt = async (event) => {
+  //   event.preventDefault();
+
+  // }
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -87,13 +93,41 @@ function NewEntryPage() {
     }
   };
 
-  // return redirect ? <Redirect to={`/archive/entry/${this.id}`} /> : (
-  return redirect ? <Redirect to={`/`} /> : (
+  const getPrompt = function () {
+    setPrompt(promptArray[Math.floor((Math.random() * promptArray.length))]);
+    
+  } 
+  
+  let promptArray = [
+    'Where is the most beautiful place you have been?',
+    'Has anyone ever saved your life?',
+    'Which do you prefer, fall or spring?',
+    'Talk about the 9/11 attacks. What associations do you have with that day?', 
+    'Do you have any pets? What are they like?', 
+    "What's your favorite food?", 
+    'What are you afraid of?', 
+    "What's more important--comfort or style?", 
+    'What advice would you give to someone half your age?', 
+    'What advice would you give to a 16-year-old?', 
+  ]
+
+  return redirect ? <Redirect to={`/archive/`} /> : (
+  // return redirect ? <Redirect to={`/`} /> : (
 
     <div style={{ padding: '20px' }}>
       <h3> Add an Entry </h3>
       <p>Trying to decide what story to tell? Don't think too hard. People just want to hear about you--what you've been up to, what you've been thinking about--it doesn't have to be groundbreaking! </p>
-      <p> Still not sure? Click \here\ for some ideas! INSERT PROMPT GENERATOR HERE.</p>
+      <p> Still not sure? Click for some ideas!
+      <Button onClick={() => getPrompt()} size="sm" color="primary">Generate Prompt</Button></p>
+      
+      {/* <div>
+        {getPrompt() ? 
+          <div class="prompt-field" border="2 px" color="primary">{prompt}
+          </div> : ""}
+      </div> */}
+
+      <div class="prompt-field">{prompt}</div>
+      <br/>
         <Label for="record_start"> Start recording</Label>
         <Button size="sm" color="success" type="button" name="record_start" id="record_start" onClick={startRecord}>RECORD</Button>
         <br/>
@@ -144,3 +178,6 @@ function NewEntryPage() {
   )};
 
 export default NewEntryPage
+
+
+

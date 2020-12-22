@@ -7,7 +7,8 @@ from .forms import EntryForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from rest_framework import permissions, status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import UserSerializer, UserSerializerWithToken, EntrySerializer, GroupSerializer, MemberSerializer
@@ -36,27 +37,38 @@ class UserList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # entry-related views:
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def entry_list(request):
-    entries = Entry.objects.all()
+    entries = Entry.objects.filter(user=request.user)
     print(entries)
     serialized_entries = EntrySerializer(entries).all_entries
     return JsonResponse(data=serialized_entries, status=200)
 
-
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def entry_detail(request, entry_id):
-    entry = Entry.objects.get(id=entry_id)
+    entry = Entry.objects.get(id=entry_id, user=request.user)
+    print(entry.voice_body)
     serialized_entry = EntrySerializer(entry).entry_detail
-
-    media_path = 'http://localhost:8000' + entry.voice_body.url 
-    serialized_entry.update({'voice_url': media_path})
-    print(serialized_entry)
+    if entry.voice_body:
+        media_path = 'http://localhost:8000' + entry.voice_body.url 
+        # serialized_entry.update({'voice_url': media_path})
+        serialized_entry.update({'voice_body': media_path})
+        print(serialized_entry)
     return JsonResponse(data=serialized_entry, status=200)
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 @csrf_exempt
 def new_entry(request):
     if request.method == "POST":
         data = json.load(request)
+        print(request.user)
+        # data['user_id'] = request.user.pk
+        print(request.user)
         form = EntryForm(data)
+        form.instance.user = request.user
 
         if data['voice_body']:
             decoded_audio = base64.b64decode(data['voice_body'])
@@ -74,10 +86,14 @@ def edit_entry(request, entry_id):
     if request.method == "PUT":
         data = json.load(request)
         form = EntryForm(data, instance=entry)
-        if form.is_valid():
-            entry = form.save(commit=True)
-            serialized_entry = EntrySerializer(entry).entry_detail
-            return JsonResponse(data=serialized_entry, status=200)
+        if form.instance.user == request.user:
+            if form.is_valid():
+                entry = form.save(commit=True)
+                serialized_entry = EntrySerializer(entry).entry_detail
+                return JsonResponse(data=serialized_entry, status=200)
+    #         return("There was a problem with your form submission.")
+    #     return("This user does not have permission to edit this entry")
+    # return("There was an error with this submission: that method type is not allowed")
 
 @csrf_exempt
 def delete_entry(request, entry_id):

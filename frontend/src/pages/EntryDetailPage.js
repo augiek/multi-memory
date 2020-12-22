@@ -2,9 +2,6 @@ import React, {useState, useEffect} from 'react'
 import {fetchEntryByID, deleteEntry } from '../api/EntryAPI'
 import { Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap'
-// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-// import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
-
 
 
 const EntryDetailPage = (props) => {
@@ -35,17 +32,17 @@ const EntryDetailPage = (props) => {
   return redirect ? <Redirect to={'/archive'} /> : (
     <div class="Page-body">
       <div>
-        <h1> Entry Detail </h1>
+        <h5> Entry {entry.id} </h5>
         <h2>{entry.entry_title}</h2>
         <p>{entry.created_date}</p>
         {/* <p>Voice recording: {entry.voice_url}</p> */}
         <div>
-          {entry.voice_url ? 
+          {entry.voice_body ? 
           <figure>
               <figcaption>Listen to Entry:</figcaption>
                 <audio
                     controls
-                    src={entry.voice_url}>
+                    src={entry.voice_body}>
                         Your browser does not support the
                         <code>audio</code> element.
                 </audio>
@@ -86,23 +83,3 @@ const EntryDetailPage = (props) => {
 } 
 
 export default EntryDetailPage 
-
-  // GoogleApiWrapper({
-  //   apiKey: 'AIzaSyDKn9Kq1xJWELlYLfjRt4I5QIStbFnuuyg'
-  //  })(App);
-
-
-
-        // {/* <div id="mapid">
-        //   <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} style={{width: '50%', height: 450}}>
-        //     <TileLayer
-        //       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        //       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        //     />
-        //     {/* <Marker position={[51.505, -0.09]}>
-        //       <Popup>
-        //         A pretty CSS3 popup. <br /> Easily customizable.
-        //       </Popup>
-        //     </Marker> */}
-        //     </MapContainer>
-        //   </div> */}
