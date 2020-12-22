@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import UserAPI from '../api/UserAPI'
 import { Redirect } from 'react-router-dom'
+import { Button, Form, Label, Input, Col } from 'reactstrap';
+
 
 const SignupPage = () => {
   const [redirect, setRedirect] = useState(false)
@@ -26,14 +28,21 @@ const SignupPage = () => {
   }
   
   return (
-    <div>
-      <h1> Signup Page </h1>
+    <div class="center-login">
+      <h1> Sign up for free! </h1>
       <form onSubmit={handleSignup}>
-        <label>Create Username:</label>
-        <input type='text' placeholder='Username' name='username' />
-        <label>Create Password:</label>
-        <input type='password' name='password' />
-        <button type='submit'>Sign Up</button>
+        <div>
+          <Label>Create Username:</Label>
+          <Input type='text' name='username' />
+        </div>
+        <div>
+          <Label>Create Password:</Label>
+          <Input type='password' name='password' />
+        </div>
+        <br/>
+        <Col sm={{ size: 10, offset: 5 }}>
+          <Button justify-content="center" type='submit'>Sign Up</Button>
+        </Col>
       </form>
     </div>
   )

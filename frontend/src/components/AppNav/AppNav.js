@@ -65,15 +65,19 @@ const AppNav = (props) => {
               </DropdownMenu>
             </UncontrolledDropdown> */}
           </Nav>
-          <div>
-            {props.username // try passing a prop from app.js
-              ? <Button size="sm" href='/login'>Log out</Button>
-              : <Button size="sm" href='/login'>Log in</Button>
-            }
-            {props.username
-              ? <Button size="sm" href="/account">Account</Button>
-              : <Button size="sm" href="/signup">Sign up</Button>
-            }
+          <div class="nav-button-container">
+            <div class="float-button">
+              {props.username // try passing a prop from app.js
+                ? <Button size="sm" href='/login'>Log out</Button>
+                : <Button size="sm" href='/login'>Log in</Button>
+              }
+            </div>
+            <div class="float-button">
+              {props.username
+                ? <Button size="sm" href="/account">Account</Button>
+                : <Button size="sm" href="/signup">Sign up</Button>
+              }
+            </div>
           </div> 
         </Collapse>
       </Navbar>

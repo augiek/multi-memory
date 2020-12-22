@@ -16,7 +16,12 @@ const FamilyTreePage = (props) => {
 
   return (
     <div class="Page-body">
-      <h1> Family Tree Branches </h1>
+      <h1> Family Tree </h1>
+      <div class="Page-substance">
+      <h5><Link to="/">Mom's side</Link></h5>
+      <h5><Link to="/">Grandchilren</Link></h5>
+      <h5><Link to="/">Shipmates</Link></h5>
+      <h5><Link to="/">Mike Platoon</Link></h5>
       {groups.map((group, index) => (
         <div>
           <Link to={`/groups/${group.id}`} >{group.id}. {group.group_name}</Link>
@@ -26,6 +31,7 @@ const FamilyTreePage = (props) => {
       <div>
           <Button href={`/groups/new`}>Add a branch to your family tree.</Button>
         </div>
+      </div>
     </div>
   )
 } 

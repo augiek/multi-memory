@@ -67,7 +67,7 @@ const ArchivePage = (props) => {
               height="300"
               frameborder="0"
               src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDKn9Kq1xJWELlYLfjRt4I5QIStbFnuuyg
-              &q=chicago_bean`} allowfullscreen>
+              &q=pearl_harbor`} allowfullscreen>
             </iframe>
         </div>
       </div>

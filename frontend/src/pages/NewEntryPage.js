@@ -117,22 +117,20 @@ function NewEntryPage() {
     <div style={{ padding: '20px' }}>
       <h3> Add an Entry </h3>
       <p>Trying to decide what story to tell? Don't think too hard. People just want to hear about you--what you've been up to, what you've been thinking about--it doesn't have to be groundbreaking! </p>
-      <p> Still not sure? Click for some ideas!
-      <Button onClick={() => getPrompt()} size="sm" color="primary">Generate Prompt</Button></p>
-      
-      {/* <div>
-        {getPrompt() ? 
-          <div class="prompt-field" border="2 px" color="primary">{prompt}
-          </div> : ""}
-      </div> */}
+
+      <Button onClick={() => getPrompt()} size="sm" color="primary">Still not sure? Click for some ideas!</Button>
 
       <div class="prompt-field">{prompt}</div>
       <br/>
-        <Label for="record_start"> Start recording</Label>
-        <Button size="sm" color="success" type="button" name="record_start" id="record_start" onClick={startRecord}>RECORD</Button>
-        <br/>
-        <Label for="record_stop"> Stop recording </Label>
-        <Button size="sm" color="danger" type="button" name="record_stop" id="record_stop" onClick={stopRecord}>STOP</Button>
+        <div >
+          {/* <Label for="record_start"> Start recording</Label> */}
+          <Button size="sm" color="success" type="button" name="record_start" id="record_start" onClick={startRecord}>START RECORDING</Button>
+        </div>
+          <div class="divider"></div>
+        <div>
+          {/* <Label for="record_stop"> Stop recording </Label> */}
+          <Button size="sm" color="danger" padding="5px" type="button" name="record_stop" id="record_stop" onClick={stopRecord}>END RECORDING</Button>
+        </div>
         <br/>
         {/* <Label for="record_stop"> Play recording </Label>
         <Button size="sm" color="primary" type="button" name="record_play" id="record_play" onClick={playRecord}>PLAY</Button> */}
@@ -142,7 +140,7 @@ function NewEntryPage() {
           <Input type="file" name="voice_body" id="audio_file" />
         </FormGroup> */}
         <FormGroup>
-          <Label for="writtenBody">Write your entry</Label>
+          <Label for="writtenBody">Add some text</Label>
           <Input value={writtenBody} type="textarea" name="writtenBody" id="writtenBody" onChange={e => setWrittenBody(e.target.value)}/>
         </FormGroup>
         <FormGroup>
@@ -161,10 +159,11 @@ function NewEntryPage() {
           <Label for="privacy">Share setting</Label>
           <Input type="select" name="privacy" id="privacy" multiple onChange={e => setPrivacy(e.target.value)}>
             <option>Only me</option>
-            <option>Kids only</option>
-            <option>Kids' branches</option>
-            <option>Spouse only</option>
-            <option>Suzanne's branch</option> */}
+            <option>Mom's side</option>
+            <option>Grandchildren</option>
+            <option>Shipmates</option>
+            <option>Mike Platoon</option>
+            <option>Spouse only</option> */}
             {/* maybe there's a better way to do this? need to have a family tree page somewhere else where they can add people and make branches/groups. customized privacy is a lower priority in the grand scheme */}
           </Input>
         </FormGroup>
